@@ -13,3 +13,4 @@ while True:
         print(f"Carré de {a} = {res}\n")
 
 
+
