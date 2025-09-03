@@ -1,10 +1,1 @@
-*/__pycache__/*
-
-while True:
-    nombre = input("Entrez un nombre (CTRL-C pour quitter) : ")
-
-    try:
-        n = float(nombre)
-        print("Le carré de", n, "est :", n**2)
-    except ValueError:
-        print("Veuillez entrer un nombre valide.") 
+__pycache__/
