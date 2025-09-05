@@ -25,4 +25,8 @@ def test_4():
         with pytest.raises(ZeroDivisionError):
             f.puissance(0, x)
 
-
+def test_type_errors():
+    with pytest.raises(TypeError):
+        f.puissance(2.5, 3)
+    with pytest.raises(TypeError):
+        f.puissance(2, 3.0)
