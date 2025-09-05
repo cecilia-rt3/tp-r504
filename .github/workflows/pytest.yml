@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        # Q7.2 : EXACTEMENT deux versions
+        python-version: ["3.10", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +18,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      # Q7.3 : montrer la version Python utilisée par ce job
+      - name: Show Python version
+        run: |
+          echo "matrix says: ${{ matrix.python-version }}"
+          python --version
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -25,7 +32,7 @@ jobs:
       - name: Run tests
         run: pytest TP1/test.py
 
-      # Q7.1: Afficher infos de contexte
+      # (Q7.1 déjà fait) Infos de contexte
       - name: Afficher infos du job
         run: |
           echo "Nom de la branche : ${{ github.ref }}"
