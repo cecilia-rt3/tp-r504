@@ -1,6 +1,6 @@
 # fonctions.py
 def puissance(a: int, b: int) -> float:
-    # Q2.4 : uniquement des entiers
+    # uniquement des entiers
     if type(a) is not int or type(b) is not int:
         raise TypeError("Only integers are allowed")
 
