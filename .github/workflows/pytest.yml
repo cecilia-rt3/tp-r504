@@ -23,4 +23,9 @@ jobs:
       - name: Run tests
         run: pytest TP1/test.py
 
+      - name: Afficher infos du job
+        run: |
+          echo "Nom de la branche : ${{ github.ref }}"
+          echo "Nom du repo      : ${{ github.repository }}"
+
 
