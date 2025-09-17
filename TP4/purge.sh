@@ -1,8 +1,8 @@
-# Q2.1 - deux lignes (arrête et supprime tous les conteneurs/images)
-docker rm -f $(docker ps -aq) 2>/dev/null
-docker rmi -f $(docker images -q) 2>/dev/null
+# Q2.1 : arrêter + supprimer tous les conteneurs
+docker stop $(docker ps -aq)
+docker rm   $(docker ps -aq)
 
-# Q2.2 - purge des réseaux/volumes/etc.
-docker network prune -f
+# Q2.2 : purger réseaux/volumes/images non utilisés
+docker system prune -af
 docker volume prune -f
-docker system prune -f
+
