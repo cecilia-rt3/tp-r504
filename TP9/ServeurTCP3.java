@@ -1,7 +1,9 @@
-// ServeurTCP3.java
+
+//ServeurTCP3.java
 
 import java.io.*;
 import java.net.*;
+
 
 public class ServeurTCP3
 {
@@ -34,9 +36,11 @@ public class ServeurTCP3
                 socketserver.close();
             }
 
-        } catch (Exception ex) {
+        } catch (Exception ex) 
+			{
             System.out.println("Erreur côté serveur ");
             ex.printStackTrace();
+
         }
     }
 }

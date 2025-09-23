@@ -3,6 +3,7 @@
 import java.io.*;
 import java.net.*;
 
+
 public class ClientUDP
 {
     public static void main(String[] args) throws Exception 
@@ -13,7 +14,7 @@ public class ClientUDP
         String s = "Hello World";
         byte[] data = s.getBytes();
 
-     
+    
         DatagramPacket packet = new DatagramPacket(data, data.length, addr, 1234);
         DatagramSocket sock = new DatagramSocket();
         sock.send(packet);
@@ -23,3 +24,4 @@ public class ClientUDP
         sock.close();
     }
 }
+

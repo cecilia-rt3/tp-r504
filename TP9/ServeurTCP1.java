@@ -1,10 +1,13 @@
-// ServeurTCP1.java
+
+//ServeurTCP1.java
 
 import java.io.*;
 import java.net.*;
 
-public class ServeurTCP1 {
-    public static void main(String[] args) {
+public class ServeurTCP1
+{
+	public static void main(String[] args)
+	{
         try 
 		{
 			ServerSocket socketserver = new ServerSocket(2016);
@@ -25,6 +28,6 @@ public class ServeurTCP1 {
             System.out.println("Erreur côté serveur ");
             ex.printStackTrace();
         }
-    }
+	}
 }
 

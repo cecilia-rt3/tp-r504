@@ -1,4 +1,5 @@
-// ServeurTCP2.java
+
+//ServeurTCP2.java
 
 import java.io.*;
 import java.net.*;
@@ -30,6 +31,7 @@ public class ServeurTCP2
 			System.out.println("Erreur côté serveur ");
 			ex.printStackTrace();
 		}
+
     }
 }
 
