@@ -1,1 +1,5 @@
-*/__pycache__/*
+# Artifacts Java
+*.class
+
+# Fichiers texte générés
+*.txt
