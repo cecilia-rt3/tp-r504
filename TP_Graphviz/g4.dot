@@ -1,0 +1,33 @@
+graph {
+edge [fontsize="20pt" color="black"];
+node [image="icon_router.png" shape="none" fixedsize=true];
+
+//Positions fixes
+A [pos="10,5!"];
+B [pos="7,7!"];
+C [pos="7,3!"];
+D [pos="4,3!"];
+E [pos="4,1!"];
+F [pos="2,2!"];
+G [pos="3,6!"];
+H [pos="4,7!"]
+
+
+B -- A [label="1"];
+B -- C [label="2"];
+B -- D [label="9"];
+B -- G [label="4"];
+B -- H [label="2"];
+H -- G [label="14"];
+G -- D [label="1"];
+G -- F [label="6"];
+F -- D [label="3"];
+F -- E [label="1"];
+E -- C [label="3"];
+E -- D [label="1"];
+C -- A [label="4"];
+C -- D [label="1"];
+
+} 
+
+
