@@ -1,1 +1,0 @@
-{"virtualbox":{"/vagrant_data":{"guestpath":"/vagrant_data","hostpath":"/home/fi25-bouka/tp-r504/TP5/vag1","disabled":false,"__vagrantfile":true}},"rsync":{"/vagrant":{"disabled":false,"guestpath":"/vagrant","hostpath":"/home/fi25-bouka/tp-r504/TP5/vag1","type":"rsync","__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
