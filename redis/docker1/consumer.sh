@@ -1,15 +1,6 @@
 #!/bin/bash
 
 # consumer.sh
-# Rôle :
-#   Consomme les valeurs présentes dans la file Redis,
-#   les affiche, et déclenche un traitement spécial
-#   si la valeur dépasse un seuil d'alerte.
-#
-# Pourquoi ce script :
-#   Il simule un micro-service "consommateur" qui lit les messages
-#   au rythme qui lui est propre, et traite plus lentement les
-#   messages considérés comme critiques.
 
 PARAM=s_redis
 
@@ -43,10 +34,6 @@ fi
 
 # Boucle infinie du consommateur
 
-# Le consommateur :
-# - vérifie d'abord si la file contient des éléments
-# - si elle est vide, il attend
-# - sinon, il dépile une valeur, l'affiche, puis teste le seuil
 while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.

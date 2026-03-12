@@ -1,13 +1,6 @@
 #!/bin/bash
 
 # producer.sh
-# Rôle :
-#   Produit des valeurs numériques aléatoires et les envoie
-#   dans une liste Redis jouant le rôle de file de messages.
-#
-# Pourquoi ce script :
-#   Il simule un micro-service "producteur" qui génère beaucoup
-#   de données, puis attend avant de recommencer.
 
 PARAM=s_redis
 
@@ -37,10 +30,6 @@ fi
 
 # Boucle infinie du producteur
 
-# Le producteur fonctionne en continu :
-# - il envoie un burst de valeurs
-# - il affiche la taille de la file
-# - il attend avant de recommencer
 while :
 do
     echo "=== Nouveau burst de production ==="
