@@ -2,7 +2,7 @@
 
 # consumer.sh
 
-PARAM=s_redis
+PARAM='redis://default:yrDddAIu10ffYJU6pSd5nScCvP9Fa4a0@redis-11738.crce202.eu-west-3-1.ec2.cloud.redislabs.com:11738'
 
 # Nom de la file Redis à consommer
 file="mafile"
@@ -19,9 +19,7 @@ pause_vide=2
 
 # Vérification de la connexion Redis
 
-# Comme Redis est dans un autre conteneur,
-# il faut préciser l'hôte avec -h "$PARAM".
-redis-cli -h "$PARAM" DBSIZE >/dev/null
+redis-cli -u "$PARAM" DBSIZE >/dev/null
 if ! [ $? = 0 ]
 then
     echo "Erreur, pas de connexion avec le serveur redis!"
@@ -35,15 +33,15 @@ while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.
     # Pour éviter de retirer un élément d'une liste vide.
-    nb_elements=$(redis-cli -h "$PARAM" --raw LLEN "$file")
+    nb_elements=$(redis-cli -u "$PARAM" --raw LLEN "$file")
 
     if [ "$nb_elements" -gt 0 ]
     then
         # RPOP retire un élément de la fin de la liste.
-        valeur=$(redis-cli -h "$PARAM" --raw RPOP "$file")
+        valeur=$(redis-cli -u "$PARAM" --raw RPOP "$file")
 
         echo "Valeur lue : $valeur"
-        echo "Taille restante de la file '$file' : $(redis-cli -h "$PARAM" --raw LLEN "$file")"
+        echo "Taille restante de la file '$file' : $(redis-cli -u "$PARAM" --raw LLEN "$file")"
 
         # Si la valeur dépasse le seuil, on déclenche une alarme
         if [ "$valeur" -gt "$seuil" ]

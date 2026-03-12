@@ -14,13 +14,6 @@ docker build -t img_cons -f Dockerfile_c .
 docker build -t img_prod -f Dockerfile_p .
 
 
-# Lancement Redis
-docker run -d \
---network myredis \
---name s_redis \
-redis:latest
-
-
 # Lancement consumer
 docker run -d \
 --network myredis \
