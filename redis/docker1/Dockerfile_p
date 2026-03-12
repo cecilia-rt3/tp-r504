@@ -1,0 +1,15 @@
+# On utilise l'image Alpine Linux, une image très légère
+FROM alpine:latest
+
+# On copie le script producer.sh dans le dossier /srv du conteneur
+COPY producer.sh /srv
+
+# On définit /srv comme dossier de travail par défaut
+WORKDIR /srv
+
+# On installe bash et redis-cli (client Redis) nécessaires au script
+RUN apk add --no-cache bash redis
+
+# Commande exécutée au démarrage du conteneur :
+# bash lance le script producer.sh
+CMD ["bash","-c","./producer.sh"]

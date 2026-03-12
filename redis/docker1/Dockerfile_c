@@ -1,0 +1,15 @@
+# On utilise également l'image Alpine Linux pour rester léger
+FROM alpine:latest
+
+# On copie le script consumer.sh dans le dossier /srv du conteneur
+COPY consumer.sh /srv
+
+# On définit le dossier de travail du conteneur
+WORKDIR /srv
+
+# Installation de bash et redis-cli pour permettre l'exécution du script
+RUN apk add --no-cache bash redis
+
+# Commande exécutée au démarrage du conteneur :
+# bash lance le script consumer.sh
+CMD ["bash","-c","./consumer.sh"]
