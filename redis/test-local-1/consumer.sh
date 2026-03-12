@@ -32,10 +32,6 @@ fi
 
 # Boucle infinie du consommateur
 
-# Le consommateur :
-# - vérifie d'abord si la file contient des éléments
-# - si elle est vide, il attend
-# - sinon, il dépile une valeur, l'affiche, puis teste le seuil
 while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.
