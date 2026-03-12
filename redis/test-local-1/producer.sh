@@ -13,20 +13,17 @@
 # Variables de configuration
 
 # Nom de la file Redis utilisée pour stocker les valeurs
-queue_name="mafile"
+file="mafile"
 
 # Nombre de valeurs envoyées à chaque burst
-burst_size=1000
+nb_valeurs=1000
 
 # Temps d'attente entre deux bursts
-delay_burst=3
+pause=3
 
 
 # Vérification de la connexion Redis
 
-# On teste Redis avant de commencer.
-# Si la commande redis-cli DBSIZE échoue, cela signifie que le serveur
-# Redis n'est pas accessible, donc le script s'arrête proprement.
 redis-cli DBSIZE >/dev/null
 if ! [ $? = 0 ]
 then
@@ -38,25 +35,25 @@ fi
 # Boucle infinie du producteur
 
 # Le producteur fonctionne en continu :
-# - il envoie un burst de 1000 valeurs
+# - il envoie un burst de valeurs
 # - il affiche la taille de la file
-# - il attend 3 secondes
+# - il attend avant de recommencer
 while :
 do
     echo "=== Nouveau burst de production ==="
 
-    # Cette boucle envoie burst_size valeurs aléatoires dans Redis.
-    # LPUSH ajoute chaque nouvelle valeur en tête de la liste.
-    for ((i=0; i<burst_size; i++))
+    # Envoi de nb_valeurs valeurs aléatoires dans Redis
+    for ((compteur=0; compteur<nb_valeurs; compteur++))
     do
-        redis-cli LPUSH "$queue_name" "$RANDOM" >/dev/null
+        redis-cli LPUSH "$file" "$RANDOM" >/dev/null
     done
 
-    # Affiche la taille actuelle de la file après le burst.
-    size=$(redis-cli --raw LLEN "$queue_name")
-    echo "Taille actuelle de la file '$queue_name' : $size"
+    # Taille actuelle de la file
+    taille=$(redis-cli --raw LLEN "$file")
+    echo "Taille actuelle de la file '$file' : $taille"
 
-    # Pause demandée par l'énoncé entre deux bursts.
-    echo "Pause de ${delay_burst}s avant le prochain burst..."
-    sleep "$delay_burst"
+    # Pause entre deux bursts
+    echo "Pause de ${pause}s avant le prochain burst..."
+    sleep "$pause"
+
 done

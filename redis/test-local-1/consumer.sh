@@ -17,17 +17,17 @@
 
 
 # Nom de la file Redis à consommer
-queue_name="mafile"
+file="mafile"
 
 # Seuil d'alerte : si la valeur lue dépasse ce seuil,
 # un traitement spécial est simulé.
-threshold=30000
+seuil=30000
 
 # Durée du traitement spécial en cas d'alerte
-delay_process=4
+pause_traitement=4
 
 # Durée d'attente si la liste est vide
-delay_empty=2
+pause_vide=2
 
 
 # Vérification de la connexion Redis
@@ -52,29 +52,26 @@ while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.
     # On en a besoin pour éviter de dépiler dans une liste vide.
-    nb=$(redis-cli --raw LLEN "$queue_name")
+    nb_elements=$(redis-cli --raw LLEN "$file")
 
-    if [ "$nb" -gt 0 ]
+    if [ "$nb_elements" -gt 0 ]
     then
         # RPOP retire un élément de la fin de la liste.
-        # Comme le producteur empile avec LPUSH, cela permet de
-        # traiter les messages dans un ordre cohérent de file.
-        value=$(redis-cli --raw RPOP "$queue_name")
+        valeur=$(redis-cli --raw RPOP "$file")
 
-        echo "Valeur lue : $value"
-        echo "Taille restante de la file '$queue_name' : $(redis-cli --raw LLEN "$queue_name")"
+        echo "Valeur lue : $valeur"
+        echo "Taille restante de la file '$file' : $(redis-cli --raw LLEN "$file")"
 
         # Si la valeur dépasse le seuil, on déclenche une alarme
-        # et on simule un traitement plus long avec sleep.
-        if [ "$value" -gt "$threshold" ]
+        if [ "$valeur" -gt "$seuil" ]
         then
-            echo "ALARME ! Valeur supérieure au seuil : $value"
-            echo "Traitement spécial pendant ${delay_process}s..."
-            sleep "$delay_process"
+            echo "ALARME ! Valeur supérieure au seuil : $valeur"
+            echo "Traitement spécial pendant ${pause_traitement}s..."
+            sleep "$pause_traitement"
         fi
     else
         # Si la liste est vide, on informe l'utilisateur puis on attend.
-        echo "Liste vide, attente ${delay_empty}s."
-        sleep "$delay_empty"
+        echo "Liste vide, attente ${pause_vide}s."
+        sleep "$pause_vide"
     fi
 done
