@@ -8,7 +8,6 @@
 file="mafile"
 
 # Seuil d'alerte : si la valeur lue dépasse ce seuil,
-# un traitement spécial est simulé.
 seuil=30000
 
 # Durée du traitement spécial en cas d'alerte
@@ -20,8 +19,7 @@ pause_vide=2
 
 # Vérification de la connexion Redis
 
-# Comme pour le producteur, on s'assure que Redis est bien joignable
-# avant de lancer la boucle infinie.
+# Comme pour le producteur, on s'assure que Redis est bien joignable avant de lancer la boucle infinie.
 redis-cli DBSIZE >/dev/null
 if ! [ $? = 0 ]
 then
@@ -35,7 +33,7 @@ fi
 while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.
-    # On en a besoin pour éviter de dépiler dans une liste vide.
+    # Pour éviter de retirer un élément d'une liste vide.
     nb_elements=$(redis-cli --raw LLEN "$file")
 
     if [ "$nb_elements" -gt 0 ]

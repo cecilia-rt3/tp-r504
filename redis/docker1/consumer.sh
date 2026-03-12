@@ -4,13 +4,10 @@
 
 PARAM=s_redis
 
-# Variables de configuration
-
 # Nom de la file Redis à consommer
 file="mafile"
 
 # Seuil d'alerte : si la valeur lue dépasse ce seuil,
-# un traitement spécial est simulé.
 seuil=30000
 
 # Durée du traitement spécial en cas d'alerte
@@ -37,7 +34,7 @@ fi
 while :
 do
     # LLEN permet de connaître la taille actuelle de la liste.
-    # On en a besoin pour éviter de dépiler dans une liste vide.
+    # Pour éviter de retirer un élément d'une liste vide.
     nb_elements=$(redis-cli -h "$PARAM" --raw LLEN "$file")
 
     if [ "$nb_elements" -gt 0 ]
@@ -52,7 +49,7 @@ do
         if [ "$valeur" -gt "$seuil" ]
         then
             echo "ALARME ! Valeur supérieure au seuil : $valeur"
-            echo "Traitement spécial pendant ${pause_traitement}s..."
+            echo "Traitement pendant ${pause_traitement}s..."
             sleep "$pause_traitement"
         fi
     else

@@ -4,8 +4,6 @@
 
 PARAM=s_redis
 
-# Variables de configuration
-
 # Nom de la file Redis utilisée pour stocker les valeurs
 file="mafile"
 
@@ -17,7 +15,6 @@ pause=3
 
 
 # Vérification de la connexion Redis
-# Ici Redis n'est plus local au conteneur producteur.
 # On doit donc préciser l'hôte avec -h $PARAM.
 
 redis-cli -h "$PARAM" DBSIZE >/dev/null
@@ -32,7 +29,7 @@ fi
 
 while :
 do
-    echo "=== Nouveau burst de production ==="
+    echo "Nouveau burst de production"
 
     # Envoi de nb_valeurs valeurs aléatoires dans Redis
     for ((compteur=0; compteur<nb_valeurs; compteur++))

@@ -25,8 +25,7 @@ fi
 
 # Boucle infinie du producteur
 
-# Envoie plusieurs valeurs, affiche la taille de la file,
-# puis attend avant de recommencer.
+# Envoie plusieurs valeurs, affiche la taille de la file, puis attend avant de recommencer.
 
 while :
 do

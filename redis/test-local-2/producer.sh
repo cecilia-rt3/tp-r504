@@ -2,8 +2,7 @@
 
 
 # Producteur de données
-# Génère des valeurs aléatoires
-# et les envoie dans Redis
+# Génère des valeurs aléatoires et les envoie dans Redis
 
 
 # Nom de la file Redis
